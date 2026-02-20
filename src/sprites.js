@@ -128,8 +128,9 @@ export function drawStatusBubble(ctx, agent) {
   const status = agent.currentActivity;
   const bob = (agent.state === 'moving') ? Math.sin(agent.animFrame * 0.35) * 2.5 : 0;
 
-  // If character is close to top edge, draw bubble below to stay on-screen
-  const above = y > 80;
+  // Draw bubble below if it would clip off the top of the canvas
+  // Name box top = (y - 56) - 13 = y - 69; need at least 4px clearance
+  const above = (y - 69 + bob) >= 4;
 
   ctx.save();
   ctx.textAlign = 'center';

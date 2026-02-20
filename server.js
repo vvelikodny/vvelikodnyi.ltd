@@ -129,7 +129,7 @@ setInterval(() => {
 
 // ─── Start ────────────────────────────────────────────────────────────────────
 httpServer.listen(PORT, () => {
-  console.log(`Velikodnyi Ltd. server → http://localhost:${PORT}`);
+  console.log(`Velikodnyi SARL server → http://localhost:${PORT}`);
   console.log(`WebSocket ready on ws://localhost:${PORT}`);
   // Signal PM2 that the process is ready (enables zero-downtime reload)
   if (process.send) process.send('ready');

@@ -1,4 +1,4 @@
-# Velikodnyi Ltd. Office
+# Velikodnyi SARL Office
 
 A real-time pixel-art office simulation of an AI agent team.
 
@@ -70,4 +70,4 @@ See [AGENTS.md](./AGENTS.md) for full architecture guide, designed for AI coding
 
 ---
 
-*Part of the [Velikodnyi Ltd.](https://vvelikodnyi.ltd) AI agents project.*
+*Part of the [Velikodnyi SARL](https://vvelikodnyi.ltd) AI agents project.*

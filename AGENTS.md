@@ -1,10 +1,10 @@
-# Agents Guide — Velikodnyi Ltd. Office
+# Agents Guide — Velikodnyi SARL Office
 
 This file provides context for AI agents (Claude, Cursor, Copilot, etc.) working in this repository.
 
 ## Project Overview
 
-**Velikodnyi Ltd. Office** is a real-time pixel-art office simulation that visualizes an AI agent team at work. Characters roam the office, switch between activities, and react to office-wide events — all rendered in a browser via HTML5 Canvas.
+**Velikodnyi SARL Office** is a real-time pixel-art office simulation that visualizes an AI agent team at work. Characters roam the office, switch between activities, and react to office-wide events — all rendered in a browser via HTML5 Canvas.
 
 Live: https://vvelikodnyi.ltd
 
