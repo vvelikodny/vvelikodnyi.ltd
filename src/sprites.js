@@ -338,18 +338,10 @@ function drawOpenClawPoster(ctx, x, y) {
 // Large semi-transparent OpenClaw floor logo — drawn under everything
 export function drawOpenClawCenter(ctx) {
   ctx.save();
-  ctx.globalAlpha = 0.13;
-  const cx = 400, cy = 330;
-  drawPixelLobster(ctx, cx, cy, 3);
-  // Logotype below the lobster
-  ctx.globalAlpha = 0.16;
-  ctx.font = 'bold 22px Courier New';
-  ctx.fillStyle = '#ff4422';
-  ctx.textAlign = 'center';
-  ctx.fillText('OpenClaw', cx, cy + 28);
-  ctx.font = '10px Courier New';
-  ctx.fillStyle = '#992211';
-  ctx.fillText('AI  PLATFORM', cx, cy + 44);
+  // Sit in the open corridor between top desks and meeting room
+  const cx = 400, cy = 148, sc = 2.0;
+  ctx.globalAlpha = 0.28;
+  drawPixelLobster(ctx, cx, cy, sc);
   ctx.restore();
 }
 
