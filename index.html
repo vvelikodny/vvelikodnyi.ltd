@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Velikodnyi Ltd. — AI Team Office</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0a0a0f;
+      color: #e0e0e0;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 16px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    header h1 {
+      font-size: 20px;
+      color: #00ff88;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    header p {
+      font-size: 11px;
+      color: #555;
+      margin-top: 2px;
+      letter-spacing: 2px;
+    }
+
+    .live-badge {
+      display: inline-block;
+      background: #ff3333;
+      color: white;
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 2px;
+      letter-spacing: 2px;
+      margin-top: 4px;
+      animation: blink 1.5s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .office-wrapper {
+      display: flex;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    canvas {
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+      border: 2px solid #1a2a1a;
+      box-shadow: 0 0 20px rgba(0, 255, 136, 0.15);
+    }
+
+    .hud {
+      width: 220px;
+      background: #0d1a0d;
+      border: 1px solid #1a3a1a;
+      border-radius: 4px;
+      padding: 12px;
+      box-sizing: border-box;
+      overflow-y: auto;
+    }
+
+    .hud h2 {
+      font-size: 11px;
+      color: #00ff88;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-bottom: 1px solid #1a3a1a;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+
+    .agent-card {
+      margin-bottom: 14px;
+      padding: 8px;
+      background: #0a120a;
+      border-radius: 3px;
+      border-left: 3px solid #333;
+    }
+
+    .agent-name {
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 2px;
+    }
+
+    .agent-role {
+      font-size: 9px;
+      color: #556;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .agent-status {
+      font-size: 11px;
+      color: #aaa;
+      min-height: 14px;
+    }
+
+    .agent-state {
+      font-size: 9px;
+      margin-top: 3px;
+      padding: 2px 5px;
+      border-radius: 2px;
+      display: inline-block;
+    }
+
+    .state-working { background: #0a2a0a; color: #00cc66; }
+    .state-moving  { background: #1a1a0a; color: #ccaa00; }
+    .state-idle    { background: #1a1a1a; color: #666; }
+    .state-break   { background: #1a0a0a; color: #cc4444; }
+
+    footer {
+      margin-top: 12px;
+      font-size: 9px;
+      color: #333;
+      letter-spacing: 1px;
+    }
+
+    footer a {
+      color: #00ff88;
+      text-decoration: none;
+      opacity: 0.6;
+      transition: opacity 0.2s;
+    }
+
+    footer a:hover {
+      opacity: 1;
+    }
+
+    .stats-panel {
+      margin-top: 16px;
+      padding: 10px;
+      background: #0a0f0a;
+      border: 1px solid #1a2a1a;
+      border-radius: 3px;
+    }
+
+    .stats-panel h3 {
+      font-size: 9px;
+      color: #00ff88;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #1a2a1a;
+      padding-bottom: 6px;
+    }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 9px;
+      color: #556;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .stat-value {
+      font-size: 11px;
+      font-weight: bold;
+      color: #e0e0e0;
+    }
+
+    .stat-value.tokens { color: #ffaa00; }
+    .stat-value.btc    { color: #f7931a; }
+    .stat-value.usd    { color: #40c080; }
+
+    .btc-icon {
+      display: inline-block;
+      font-style: normal;
+      font-weight: bold;
+      color: #f7931a;
+      margin-right: 2px;
+    }
+
+    .btc-price-note {
+      font-size: 8px;
+      color: #334;
+      text-align: right;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>⚡ Velikodnyi Ltd.</h1>
+    <p>AI TEAM WORKSPACE</p>
+    <span class="live-badge">● LIVE</span>
+  </header>
+
+  <div class="office-wrapper">
+    <canvas id="office" width="800" height="600"></canvas>
+
+    <div class="hud">
+      <div class="stats-panel">
+        <h3><i class="btc-icon">₿</i> AI Cost Meter</h3>
+        <div class="stat-row">
+          <span class="stat-label">Tokens burned</span>
+          <span class="stat-value tokens" id="stat-tokens">0</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Cost USD</span>
+          <span class="stat-value usd" id="stat-usd">$0.0000</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label"><i class="btc-icon">₿</i> Cost BTC</span>
+          <span class="stat-value btc" id="stat-btc">₿ 0.00000000</span>
+        </div>
+        <div class="btc-price-note" id="btc-price-note">fetching BTC price…</div>
+      </div>
+
+      <h2 style="margin-top:14px">Team Status</h2>
+      <div id="agent-list"></div>
+    </div>
+  </div>
+
+  <footer>Velikodnyi Ltd. · AI agents office · <a href="https://github.com/vvelikodny" target="_blank" rel="noopener">github.com/vvelikodny</a></footer>
+
+  <script type="module" src="src/simulation.js"></script>
+</body>
+</html>

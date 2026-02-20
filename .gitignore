@@ -1,0 +1,4 @@
+node_modules/
+metrics.json
+.pm2/
+*.log
