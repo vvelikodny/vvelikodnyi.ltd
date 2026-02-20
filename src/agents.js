@@ -2,24 +2,24 @@ import { ZONES } from './office.js';
 
 // Role-based activity definitions
 const ROLE_ACTIVITIES = {
-  // Vitalii — day shift (9:00–18:00): Software Engineer @ Gcore, Edge Network
+  // Vitalii — day shift (9:00–18:00): Software Engineer @ Gcore, WAAP + CDN + gRPC
   ceo_day: [
-    { text: '⚡ Optimizing edge nodes',       zone: 'ceo_desk',  state: 'working', duration: [30, 60] },
-    { text: '🌐 Edge CDN config review',      zone: 'ceo_desk',  state: 'working', duration: [24, 54] },
-    { text: '📡 Deploying new edge POP',      zone: 'ceo_desk',  state: 'working', duration: [30, 54] },
+    { text: '🛡️ Building WAAP before CDN',   zone: 'ceo_desk',  state: 'working', duration: [36, 72] },
+    { text: '🔌 gRPC integration to CDN',     zone: 'ceo_desk',  state: 'working', duration: [36, 66] },
+    { text: '🔌 gRPC integration to WAAP',    zone: 'ceo_desk',  state: 'working', duration: [30, 60] },
+    { text: '🧱 WAAP rule engine design',     zone: 'ceo_desk',  state: 'working', duration: [24, 54] },
+    { text: '⚡ Optimizing edge nodes',       zone: 'ceo_desk',  state: 'working', duration: [30, 54] },
+    { text: '🌐 CDN config review',           zone: 'ceo_desk',  state: 'working', duration: [24, 48] },
+    { text: '📡 Deploying new edge POP',      zone: 'ceo_desk',  state: 'working', duration: [24, 48] },
     { text: '🔧 Debugging CDN latency',       zone: 'ceo_desk',  state: 'working', duration: [24, 48] },
-    { text: '🛡️ DDoS protection tuning',     zone: 'ceo_desk',  state: 'working', duration: [18, 42] },
-    { text: '📊 Traffic analytics dashboard', zone: 'ceo_desk',  state: 'working', duration: [15, 36] },
-    { text: '💻 Coding edge worker logic',    zone: 'ceo_desk',  state: 'working', duration: [36, 60] },
     { text: '🔍 Reviewing Gcore PRs',         zone: 'ceo_desk',  state: 'working', duration: [24, 45] },
-    { text: '🤝 Gcore team sync',             zone: 'meeting',   state: 'working', duration: [30, 54] },
-    { text: '📝 Tech spec: edge routing',     zone: 'ceo_desk',  state: 'working', duration: [24, 48] },
-    { text: '⚙️ Fine-tuning CDN rules',      zone: 'ceo_desk',  state: 'working', duration: [18, 42] },
+    { text: '🤝 Gcore architecture call',     zone: 'meeting',   state: 'working', duration: [30, 54] },
+    { text: '📝 Tech spec: WAAP pipeline',    zone: 'ceo_desk',  state: 'working', duration: [24, 48] },
     { text: '🌍 Global POP monitoring',       zone: 'ceo_desk',  state: 'working', duration: [15, 36] },
-    { text: '🏗️ Edge infra planning',        zone: 'meeting',   state: 'working', duration: [24, 48] },
-    { text: '🚀 Shipping edge feature',       zone: 'ceo_desk',  state: 'working', duration: [30, 60] },
-    { text: '📞 Gcore architecture call',     zone: 'ceo_desk',  state: 'working', duration: [30, 54] },
-    { text: '😤 "Why is latency 3ms not 2?"', zone: 'ceo_desk',  state: 'working', duration: [15, 30] },
+    { text: '💻 Coding gRPC proto schemas',   zone: 'ceo_desk',  state: 'working', duration: [30, 60] },
+    { text: '😤 "Why is gRPC 3ms not 1?"',    zone: 'ceo_desk',  state: 'working', duration: [15, 30] },
+    { text: '🚀 Shipping WAAP to staging',    zone: 'ceo_desk',  state: 'working', duration: [24, 54] },
+    { text: '🛠️ WAF rule tuning session',    zone: 'ceo_desk',  state: 'working', duration: [18, 42] },
     { text: '☕ Coffee break',               zone: 'kitchen',   state: 'break',   duration: [12, 24] },
     { text: '💧 Hydration check',            zone: 'cooler',    state: 'break',   duration: [9, 18]  },
     { text: '🚶 Walking the floor',          zone: 'corridor',  state: 'moving',  duration: [12, 24] },

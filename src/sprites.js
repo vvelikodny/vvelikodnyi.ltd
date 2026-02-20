@@ -214,6 +214,9 @@ export function drawOfficeObjects(ctx) {
   // Meeting table
   drawMeetingTable(ctx, ZONES.meeting.x, ZONES.meeting.y);
 
+  // OpenClaw poster — hangs on the top wall
+  drawOpenClawPoster(ctx, 280, 0);
+
   // WC
   drawWC(ctx, ZONES.wc.x, ZONES.wc.y);
 }
@@ -295,6 +298,108 @@ function drawMeetingTable(ctx, x, y) {
   ctx.ellipse(x, y - 8, 30, 10, 0, 0, Math.PI * 2);
   ctx.fill();
   ctx.restore();
+}
+
+function drawOpenClawPoster(ctx, x, y) {
+  ctx.save();
+  const pw = 158, ph = 54;
+
+  // Poster frame
+  ctx.fillStyle = '#0e0008';
+  roundRect(ctx, x - pw / 2, y, pw, ph, 4);
+  ctx.fill();
+  ctx.strokeStyle = '#cc2200';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  // Inner glow border
+  ctx.strokeStyle = 'rgba(255,80,30,0.25)';
+  ctx.lineWidth = 1;
+  roundRect(ctx, x - pw / 2 + 3, y + 3, pw - 6, ph - 6, 3);
+  ctx.stroke();
+
+  // Pixel lobster (left half of poster)
+  drawPixelLobster(ctx, x - 38, y + 36);
+
+  // "OpenClaw" logotype (right half)
+  ctx.font = 'bold 13px Courier New';
+  ctx.fillStyle = '#ff4422';
+  ctx.textAlign = 'left';
+  ctx.fillText('OpenClaw', x - 4, y + 24);
+
+  ctx.font = '7px Courier New';
+  ctx.fillStyle = '#992211';
+  ctx.fillText('AI  PLATFORM', x - 2, y + 36);
+
+  ctx.font = '6px Courier New';
+  ctx.fillStyle = '#551100';
+  ctx.fillText('openclaw.ai', x - 2, y + 46);
+
+  ctx.restore();
+}
+
+function drawPixelLobster(ctx, cx, cy) {
+  // Pixel-art lobster, front-facing, ~34px wide × 46px tall
+  // cx/cy = bottom-center of the lobster
+  const R  = '#cc2200';   // dark red
+  const OR = '#ee4422';   // orange-red body
+  const HI = '#ff7755';   // highlight
+  const DK = '#881100';   // dark shadow
+
+  function r(dx, dy, w, h, col) {
+    ctx.fillStyle = col;
+    ctx.fillRect(cx + dx, cy + dy, w, h);
+  }
+
+  // ── Antennae ──────────────────────────────────────────
+  r(-4, -44, 1, 10, DK);   r(-7, -48, 3,  1, DK);  r(-9, -50, 2, 2, DK);
+  r( 3, -44, 1, 10, DK);   r( 4, -48, 3,  1, DK);  r( 7, -50, 2, 2, DK);
+
+  // ── Eye stalks & eyes ────────────────────────────────
+  r(-5, -38, 3, 6, R);     r(2, -38, 3, 6, R);
+  r(-6, -40, 4, 4, '#fff');r(2, -40, 4, 4, '#fff');  // whites
+  r(-5, -39, 2, 2, '#111');r(3, -39, 2, 2, '#111');  // pupils
+  r(-4, -38, 1, 1, '#fff');r(4, -38, 1, 1, '#fff');  // shine
+
+  // ── Head / carapace ──────────────────────────────────
+  r(-6, -34, 12, 12, OR);
+  r(-5, -33, 10,  2, HI);   // top highlight
+  r(-4, -28,  8,  2, HI);   // mid highlight
+
+  // ── Left claw ─────────────────────────────────────────
+  r(-14, -28, 8, 3, OR);    // left arm
+  r(-20, -34, 8, 10, OR);   // left claw body
+  r(-20, -36, 6,  4, R);    // top pincer
+  r(-20, -24, 6,  3, R);    // bottom pincer
+  r(-21, -28, 7,  4, '#0e0008'); // pincer gap
+  r(-19, -35, 4,  2, HI);   // claw highlight
+
+  // ── Right claw ────────────────────────────────────────
+  r(  6, -28, 8, 3, OR);    // right arm
+  r( 12, -34, 8, 10, OR);   // right claw body
+  r( 14, -36, 6,  4, R);    // top pincer
+  r( 14, -24, 6,  3, R);    // bottom pincer
+  r( 14, -28, 7,  4, '#0e0008'); // pincer gap
+  r( 15, -35, 4,  2, HI);   // claw highlight
+
+  // ── Abdomen segments ─────────────────────────────────
+  r(-5, -22, 10, 4, OR);  r(-4, -21, 8, 2, HI);
+  r(-5, -18, 10, 4, OR);  r(-4, -17, 8, 2, HI);
+  r(-4, -14,  8, 4, OR);  r(-3, -13, 6, 2, HI);
+  r(-4, -10,  8, 4, R);   r(-3,  -9, 6, 2, OR);
+
+  // ── Walking legs (3 pairs) ────────────────────────────
+  r(-8, -22, 2, 10, DK);  r( 6, -22, 2, 10, DK);
+  r(-8, -18, 2,  8, DK);  r( 6, -18, 2,  8, DK);
+  r(-7, -14, 2,  6, DK);  r( 5, -14, 2,  6, DK);
+
+  // ── Tail fan ─────────────────────────────────────────
+  r(-9,  -8, 5, 7, OR);   r(-8,  -7, 3, 4, HI);
+  r(-3,  -8, 6, 9, OR);   r(-2,  -7, 4, 5, HI);
+  r( 4,  -8, 5, 7, OR);   r( 5,  -7, 3, 4, HI);
+  // tail tips darker
+  r(-9,  -2, 5, 2, R);
+  r(-3,  -1, 6, 2, R);
+  r( 4,  -2, 5, 2, R);
 }
 
 function drawWC(ctx, x, y) {
