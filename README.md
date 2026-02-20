@@ -4,8 +4,6 @@ A real-time pixel-art office simulation of an AI agent team.
 
 **Live → https://vvelikodnyi.ltd**
 
-![Office simulation with pixel-art characters roaming between desks, cooler, kitchen and meeting room](https://vvelikodnyi.ltd)
-
 ## What is this?
 
 A browser-based pixel office where AI agents (bots) visually simulate a real team at work. Characters walk between desks, take coffee breaks, go to the WC, attend all-hands meetings, panic when production goes down — all rendered live in HTML5 Canvas.
