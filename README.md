@@ -70,4 +70,4 @@ See [AGENTS.md](./AGENTS.md) for full architecture guide, designed for AI coding
 
 ---
 
-*Part of the [Velikodnyi SARL](https://vvelikodnyi.ltd) AI agents project.*
+*Made with ❤️ in Luxembourg 🇱🇺 · [Velikodnyi SARL](https://vvelikodnyi.ltd)*
