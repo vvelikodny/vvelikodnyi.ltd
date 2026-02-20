@@ -214,8 +214,6 @@ export function drawOfficeObjects(ctx) {
   // Meeting table
   drawMeetingTable(ctx, ZONES.meeting.x, ZONES.meeting.y);
 
-  // OpenClaw poster — hangs on the top wall
-  drawOpenClawPoster(ctx, 280, 0);
 
   // WC
   drawWC(ctx, ZONES.wc.x, ZONES.wc.y);
@@ -318,7 +316,7 @@ function drawOpenClawPoster(ctx, x, y) {
   ctx.stroke();
 
   // Pixel lobster (left half of poster)
-  drawPixelLobster(ctx, x - 38, y + 36);
+  drawPixelLobster(ctx, x - 38, y + 36, 1);
 
   // "OpenClaw" logotype (right half)
   ctx.font = 'bold 13px Courier New';
@@ -337,7 +335,25 @@ function drawOpenClawPoster(ctx, x, y) {
   ctx.restore();
 }
 
-function drawPixelLobster(ctx, cx, cy) {
+// Large semi-transparent OpenClaw floor logo — drawn under everything
+export function drawOpenClawCenter(ctx) {
+  ctx.save();
+  ctx.globalAlpha = 0.13;
+  const cx = 400, cy = 330;
+  drawPixelLobster(ctx, cx, cy, 3);
+  // Logotype below the lobster
+  ctx.globalAlpha = 0.16;
+  ctx.font = 'bold 22px Courier New';
+  ctx.fillStyle = '#ff4422';
+  ctx.textAlign = 'center';
+  ctx.fillText('OpenClaw', cx, cy + 28);
+  ctx.font = '10px Courier New';
+  ctx.fillStyle = '#992211';
+  ctx.fillText('AI  PLATFORM', cx, cy + 44);
+  ctx.restore();
+}
+
+function drawPixelLobster(ctx, cx, cy, scale = 1) {
   // Pixel-art lobster, front-facing, ~34px wide × 46px tall
   // cx/cy = bottom-center of the lobster
   const R  = '#cc2200';   // dark red
@@ -347,7 +363,7 @@ function drawPixelLobster(ctx, cx, cy) {
 
   function r(dx, dy, w, h, col) {
     ctx.fillStyle = col;
-    ctx.fillRect(cx + dx, cy + dy, w, h);
+    ctx.fillRect(cx + dx * scale, cy + dy * scale, w * scale, h * scale);
   }
 
   // ── Antennae ──────────────────────────────────────────

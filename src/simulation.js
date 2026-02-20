@@ -1,5 +1,5 @@
 import { renderMap, ZONES } from './office.js';
-import { drawCharacter, drawStatusBubble, drawOfficeObjects } from './sprites.js';
+import { drawCharacter, drawStatusBubble, drawOfficeObjects, drawOpenClawCenter } from './sprites.js';
 import { createAgents, ROLE_LABELS } from './agents.js';
 
 // ─── WebSocket metrics (server pushes, client is read-only) ──────────────────
@@ -316,6 +316,7 @@ function start() {
     ctx.fillStyle = '#0a0a0f';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     renderMap(ctx);
+    drawOpenClawCenter(ctx);
     drawOfficeObjects(ctx);
 
     agents
