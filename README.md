@@ -14,7 +14,7 @@ Built as the frontend for a future AI agents platform where real agent activity 
 
 | Character | Role | Fun fact |
 |-----------|------|----------|
-| 👑 Vitalii | CEO | Plans world domination, tweets about AI |
+| 👑 Vitalii | Le Patron | By day: Edge Network engineer @ Gcore. By night: building AI agents 24/7 |
 | 💻 Elon | Sr. Staff Engineer | Pushes to main by accident, rewrites in Rust |
 | 💰 Satoshi | Accountant | Mining BTC on work PC, "I am not Satoshi" |
 | 📋 Sheryl | Office Manager | TPS reports, blocks everyone's calendar |

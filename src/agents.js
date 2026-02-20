@@ -2,26 +2,55 @@ import { ZONES } from './office.js';
 
 // Role-based activity definitions
 const ROLE_ACTIVITIES = {
+  // Vitalii — day shift (9:00–18:00): Software Engineer @ Gcore, Edge Network
+  ceo_day: [
+    { text: '⚡ Optimizing edge nodes',       zone: 'ceo_desk',  state: 'working', duration: [30, 60] },
+    { text: '🌐 Edge CDN config review',      zone: 'ceo_desk',  state: 'working', duration: [24, 54] },
+    { text: '📡 Deploying new edge POP',      zone: 'ceo_desk',  state: 'working', duration: [30, 54] },
+    { text: '🔧 Debugging CDN latency',       zone: 'ceo_desk',  state: 'working', duration: [24, 48] },
+    { text: '🛡️ DDoS protection tuning',     zone: 'ceo_desk',  state: 'working', duration: [18, 42] },
+    { text: '📊 Traffic analytics dashboard', zone: 'ceo_desk',  state: 'working', duration: [15, 36] },
+    { text: '💻 Coding edge worker logic',    zone: 'ceo_desk',  state: 'working', duration: [36, 60] },
+    { text: '🔍 Reviewing Gcore PRs',         zone: 'ceo_desk',  state: 'working', duration: [24, 45] },
+    { text: '🤝 Gcore team sync',             zone: 'meeting',   state: 'working', duration: [30, 54] },
+    { text: '📝 Tech spec: edge routing',     zone: 'ceo_desk',  state: 'working', duration: [24, 48] },
+    { text: '⚙️ Fine-tuning CDN rules',      zone: 'ceo_desk',  state: 'working', duration: [18, 42] },
+    { text: '🌍 Global POP monitoring',       zone: 'ceo_desk',  state: 'working', duration: [15, 36] },
+    { text: '🏗️ Edge infra planning',        zone: 'meeting',   state: 'working', duration: [24, 48] },
+    { text: '🚀 Shipping edge feature',       zone: 'ceo_desk',  state: 'working', duration: [30, 60] },
+    { text: '📞 Gcore architecture call',     zone: 'ceo_desk',  state: 'working', duration: [30, 54] },
+    { text: '😤 "Why is latency 3ms not 2?"', zone: 'ceo_desk',  state: 'working', duration: [15, 30] },
+    { text: '☕ Coffee break',               zone: 'kitchen',   state: 'break',   duration: [12, 24] },
+    { text: '💧 Hydration check',            zone: 'cooler',    state: 'break',   duration: [9, 18]  },
+    { text: '🚶 Walking the floor',          zone: 'corridor',  state: 'moving',  duration: [12, 24] },
+    { text: '🚽 Bio break',                 zone: 'wc',        state: 'break',   duration: [9, 18]  },
+  ],
+  // Vitalii — evening (18:00+): AI research, building AI team 24/7
+  ceo_evening: [
+    { text: '🤖 Building AI agent team',      zone: 'ceo_desk',  state: 'working', duration: [36, 72] },
+    { text: '🧠 Reading AI research papers',  zone: 'ceo_desk',  state: 'working', duration: [30, 60] },
+    { text: '🌙 Late-night AI coding',        zone: 'ceo_desk',  state: 'working', duration: [36, 72] },
+    { text: '📡 Deploying agents to prod',    zone: 'ceo_desk',  state: 'working', duration: [24, 54] },
+    { text: '🔧 Fine-tuning AI prompts',      zone: 'ceo_desk',  state: 'working', duration: [24, 48] },
+    { text: '📊 Monitoring agent metrics',    zone: 'ceo_desk',  state: 'working', duration: [18, 42] },
+    { text: '🚀 AI product roadmap',          zone: 'ceo_desk',  state: 'working', duration: [30, 54] },
+    { text: '🧪 Testing new AI model',        zone: 'ceo_desk',  state: 'working', duration: [24, 48] },
+    { text: '🌐 AI agent orchestration',      zone: 'ceo_desk',  state: 'working', duration: [30, 60] },
+    { text: '💡 "What if agents ran 24/7?"', zone: 'ceo_desk',  state: 'working', duration: [18, 42] },
+    { text: '🤔 Automating daily routines',   zone: 'ceo_desk',  state: 'working', duration: [24, 54] },
+    { text: '📚 Claude API deep dive',        zone: 'ceo_desk',  state: 'working', duration: [30, 54] },
+    { text: '🔭 Visioning AI future',         zone: 'ceo_desk',  state: 'working', duration: [18, 36] },
+    { text: '😤 "The bots broke again"',      zone: 'ceo_desk',  state: 'working', duration: [15, 36] },
+    { text: '💬 1:1 with the AI team',       zone: 'meeting',   state: 'working', duration: [24, 48] },
+    { text: '🏆 Agents working while I sleep',zone: 'ceo_desk',  state: 'working', duration: [30, 60] },
+    { text: '☕ Midnight coffee',             zone: 'kitchen',   state: 'break',   duration: [12, 24] },
+    { text: '💧 Hydration (forgot again)',    zone: 'cooler',    state: 'break',   duration: [9, 18]  },
+    { text: '🧘 Mindfulness break',           zone: 'corridor2', state: 'break',   duration: [12, 24] },
+    { text: '🚽 Bio break',                  zone: 'wc',        state: 'break',   duration: [9, 18]  },
+  ],
+  // fallback (unused but keeps _pickNextActivity safe)
   ceo: [
-    { text: '📊 Reviewing metrics',         zone: 'ceo_desk',  state: 'working', duration: [24, 54] },
-    { text: '📞 Investor call',              zone: 'ceo_desk',  state: 'working', duration: [30, 60] },
-    { text: '💬 1:1 with the team',         zone: 'meeting',   state: 'working', duration: [36, 60] },
-    { text: '✉️ Answering emails',           zone: 'ceo_desk',  state: 'working', duration: [15, 36] },
-    { text: '🚀 Planning world domination',  zone: 'ceo_desk',  state: 'working', duration: [18, 42] },
-    { text: '🐦 Tweeting about AI',          zone: 'ceo_desk',  state: 'working', duration: [9, 24]  },
-    { text: '💡 Pivoting the strategy',      zone: 'ceo_desk',  state: 'working', duration: [24, 48] },
-    { text: '📈 Reading TechCrunch',         zone: 'ceo_desk',  state: 'working', duration: [12, 30] },
-    { text: '🤝 VC meeting prep',            zone: 'meeting',   state: 'working', duration: [30, 54] },
-    { text: '📝 Writing company blog',       zone: 'ceo_desk',  state: 'working', duration: [24, 45] },
-    { text: '🔭 Visioning session',          zone: 'ceo_desk',  state: 'working', duration: [18, 36] },
-    { text: '📣 Announcing the new pivot',   zone: 'meeting',   state: 'working', duration: [15, 30] },
-    { text: '🏆 Setting OKRs',              zone: 'meeting',   state: 'working', duration: [30, 60] },
-    { text: '☕ Coffee break',              zone: 'kitchen',   state: 'break',   duration: [12, 24]  },
-    { text: '💧 Hydration check',           zone: 'cooler',    state: 'break',   duration: [9, 18]  },
-    { text: '🚶 Walking the floor',         zone: 'corridor',  state: 'moving',  duration: [15, 30] },
-    { text: '🧘 Mindfulness break',         zone: 'corridor2', state: 'break',   duration: [12, 24]  },
-    { text: '📱 Doomscrolling LinkedIn',    zone: 'ceo_desk',  state: 'break',   duration: [9, 21]  },
-    { text: '🚽 Bio break',                zone: 'wc',        state: 'break',   duration: [9, 18]  },
+    { text: '☕ Coffee break', zone: 'kitchen', state: 'break', duration: [12, 24] },
   ],
   dev: [
     { text: '💻 Shipping it',               zone: 'dev_desk',  state: 'working', duration: [30, 60] },
@@ -196,7 +225,12 @@ export class Agent {
   }
 
   _pickNextActivity() {
-    const activities = ROLE_ACTIVITIES[this.role];
+    let pool = this.role;
+    if (this.role === 'ceo') {
+      const hour = new Date().getHours();
+      pool = (hour >= 9 && hour < 18) ? 'ceo_day' : 'ceo_evening';
+    }
+    const activities = ROLE_ACTIVITIES[pool];
     const activity = activities[Math.floor(Math.random() * activities.length)];
     this._pendingActivity = activity;
     const zone = ZONES[activity.zone];
@@ -254,7 +288,7 @@ export function createAgents() {
 }
 
 export const ROLE_LABELS = {
-  ceo:        'CEO',
+  ceo:        'Le Patron',
   dev:        'Sr. Staff Engineer',
   accountant: 'Accountant',
   manager:    'Office Manager',
